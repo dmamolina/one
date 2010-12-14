@@ -403,7 +403,7 @@ IM_PROBES_KVM_FILES="src/im_mad/remotes/kvm.d/kvm.rb \
                     src/im_mad/remotes/kvm.d/cpu.sh \
                     src/im_mad/remotes/kvm.d/name.sh"
 
-IM_PROBES_KVM_FILES="src/im_mad/remotes/ganglia.d/ganglia_probe"
+IM_PROBES_GANGLIA_FILES="src/im_mad/remotes/ganglia.d/ganglia_probe"
 
 
 #-------------------------------------------------------------------------------
