@@ -184,6 +184,7 @@ LIB_DIRS="$LIB_LOCATION/ruby \
           $LIB_LOCATION/remotes/im \
           $LIB_LOCATION/remotes/im/kvm.d \
           $LIB_LOCATION/remotes/im/xen.d \
+          $LIB_LOCATION/remotes/im/ganglia.d \
           $LIB_LOCATION/remotes/vmm/xen \
           $LIB_LOCATION/remotes/vmm/kvm"
 
@@ -191,6 +192,7 @@ VAR_DIRS="$VAR_LOCATION/remotes \
           $VAR_LOCATION/remotes/im \
           $VAR_LOCATION/remotes/im/kvm.d \
           $VAR_LOCATION/remotes/im/xen.d \
+          $VAR_LOCATION/remotes/im/ganglia.d \
           $VAR_LOCATION/remotes/vmm/xen \
           $VAR_LOCATION/remotes/vmm/kvm"
 
