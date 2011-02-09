@@ -33,7 +33,8 @@ GANGLIA_PORT=8649
 #GANGLIA_FILE='data.xml'
 
 
-host=ARGV[1]
+host=ARGV[0]
+domain=ARGV[1]
 
 # Gets monitoring data from ganglia or file
 begin
@@ -47,43 +48,14 @@ rescue
     exit -1
 end
 
-data=ganglia.to_hash
+dom_info=ganglia.get_vms_information
 
-
-# Monitoring info extraction
-
-info=Hash.new
-
-total_cpu=data['cpu_num'].to_i*100
-
-info["TOTALCPU"]=total_cpu
-info["CPUSPEED"]=data['cpu_speed']
-
-info["TOTALMEMORY"]=data['mem_total']
-info["USEDMEMORY"]=data['mem_total'].to_i-data['mem_free'].to_i
-info["FREEMEMORY"]=data['mem_free'].to_i
-
-free_cpu=(data['cpu_idle'].to_f/100.0) * total_cpu
-
-info["FREECPU"]=free_cpu
-info["USEDCPU"]=total_cpu - free_cpu
-
-info["NETRX"]=data['bytes_out']
-info["NETTX"]=data['bytes_in']
-
-info["KVM_VERSION"]=data['KVM_VERSION']
-info["XEN_VERSION"]=data['XEN_VERSION']
-
-# Get opennebula metrics from ganglia
-
-info.merge!(ganglia.get_opennebula_metrics)
-
-
-# Print information
-
-info.each do |key, value|
-    GangliaHost.print_info(key, value)
+if dom_info[domain]
+    info=dom_info[domain].map do |key, value|
+        "#{key.to_s.upcase}=\"#{value}\""
+    end.join(' ')
+    
+    puts info
 end
-
 
 
